@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('logbook', LogBookController::class);
+Route::resource('/logbook', LogBookController::class);
