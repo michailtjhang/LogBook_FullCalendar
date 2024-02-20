@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->timestamp('date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->string('status');
             $table->timestamps();
         });
     }
