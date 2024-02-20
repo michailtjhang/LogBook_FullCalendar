@@ -10,10 +10,10 @@
     <title>Document</title>
 </head>
 <body>
-    
   <div class="container">
     <div class="row">
       <div class="col-12 mt-3">
+        <a href="{{route('logbook.create')}}" class="btn btn-primary">test</a>
         <div id='calendar'></div>
       </div>
     </div>
@@ -29,6 +29,8 @@
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js'></script>
     <script>
 
+      const modal = $('#modal-action')
+
       document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -37,7 +39,21 @@
           events: `{{ route('logbook.list') }}`,
           dateClick: function(info) {
             console.log(info);
-            $('#modal-action').modal('show');
+            $.ajax({
+              url : `{{ route('logbook.create') }}`,
+              data : {
+                date: info.dateStr,
+              },
+              success: function(res){
+                modal.html(res).modal('show')
+
+                $('#form-action').on('submit', function (e) {
+                  e.preventDefault()
+
+                  console.log(this);
+                })
+              }
+            })
           },
         });
         calendar.render();

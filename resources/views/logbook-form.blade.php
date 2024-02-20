@@ -1,4 +1,4 @@
-<x-modal-action action={{ $action }}>
+<x-modal-action action="{{ $action }}">
     @if ($data->id)
         @method('put')
     @endif
@@ -10,13 +10,13 @@
             </div>
         </div>
         <div class="col-6">
-            <div class="mb-3" invisible>
-                <input type="datetime-local" name="date" class="form-control" readonly>
+            <div class="mb-3">
+                <input type="date" name="date" value="{{ $data->date ?? request()->date }}" class="form-control" readonly>
             </div>
         </div>
         <div class="col-12">
-            <div class="mb-3" invisible>
-                <textarea name="description" class="form-control"></textarea>
+            <div class="mb-3">
+                <textarea name="description" class="form-control">{{ $data->description ?? request()->description }}</textarea>
             </div>
         </div>
     </div>

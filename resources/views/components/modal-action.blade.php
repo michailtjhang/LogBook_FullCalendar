@@ -1,9 +1,9 @@
 @props(['action', 'data'])
 
 <div class="modal-dialog">
-    <form action="{{ $action }}" method="post">
+    <form id="form-action" action="{{ $action }}" method="post">
         @csrf
-        
+
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title">Modal title</h5>
@@ -14,7 +14,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
         </div>
     </form>

@@ -9,7 +9,7 @@ class LogBookController extends Controller
 {
     public function index()
     {
-        return view('dashboard.logbook');
+        return view('logbook');
     }
 
     public function logbookList(request $request)
@@ -30,7 +30,8 @@ class LogBookController extends Controller
 
     public function create(LogBook $logBook)
     {
-        return view('dashboard.logbook-create', ['data' => $logBook, 'action' => route('logbook.store')]);
+        return view('logbook-form', ['data' => $logBook, 'action' => route('logbook.store')]);
+        // dd('test');
     }
 
     /**
