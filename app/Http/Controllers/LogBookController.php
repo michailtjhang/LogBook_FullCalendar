@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LogBookRequest;
 use App\Models\LogBook;
 use Illuminate\Http\Request;
 
@@ -34,12 +35,18 @@ class LogBookController extends Controller
         // dd('test');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(LogBookRequest $request, LogBook $logBook)
     {
-        //
+        $logBook->date = $request->date;
+        $logBook->title = $request->title;
+        $logBook->description = $request->description;
+
+        $logBook->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Logbook saved successfully',
+        ]);
     }
 
     /**

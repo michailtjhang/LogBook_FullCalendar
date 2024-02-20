@@ -50,7 +50,20 @@
                 $('#form-action').on('submit', function (e) {
                   e.preventDefault()
 
-                  console.log(this);
+                  const form = this
+                  const formData = new FormData(form)
+
+                  $.ajax({
+                    url : form.action,
+                    method : form.method,
+                    data : formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(res){
+                      modal.modal('hide')
+                      calendar.refetchEvents()
+                    }
+                  })
                 })
               }
             })
