@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-6">
             <div class="mb-3">
-                <input type="text" name="title" class="form-control" placeholder="Topik Harian">
+                <input type="text" name="title" {{ $data->title }} class="form-control" placeholder="Topik Harian">
             </div>
         </div>
         <div class="col-6">
@@ -16,7 +16,7 @@
         </div>
         <div class="col-12">
             <div class="mb-3">
-                <textarea name="description" class="form-control" placeholder="Detail sehari-hari">{{ $data->description ?? request()->description }}</textarea>
+                <textarea name="description" class="form-control" placeholder="Detail sehari-hari">{{ $data->description }}</textarea>
             </div>
         </div>
     </div>

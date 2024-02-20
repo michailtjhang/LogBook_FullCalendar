@@ -37,8 +37,8 @@
           initialView: 'dayGridMonth',
           themeSystem: 'bootstrap5',
           events: `{{ route('logbook.list') }}`,
+          editable: true,
           dateClick: function(info) {
-            console.log(info);
             $.ajax({
               url : `{{ route('logbook.create') }}`,
               data : {
@@ -68,6 +68,34 @@
               }
             })
           },
+          
+          eventClick: function({event}) {
+            $.ajax({
+              url: `{{ url('logbook') }}/${event.id}/edit`,
+              success: function(res){
+                modal.html(res).modal('show')
+
+                $('#form-action').on('submit', function (e) {
+                  e.preventDefault()
+
+                  const form = this
+                  const formData = new FormData(form)
+
+                  $.ajax({
+                    url : form.action,
+                    method : form.method,
+                    data : formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(res){
+                      modal.modal('hide')
+                      calendar.refetchEvents()
+                    }
+                  })
+                })
+              }
+            })
+          }
         });
         calendar.render();
       });

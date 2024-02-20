@@ -32,7 +32,6 @@ class LogBookController extends Controller
     public function create(LogBook $logBook)
     {
         return view('logbook-form', ['data' => $logBook, 'action' => route('logbook.store')]);
-        // dd('test');
     }
 
     public function store(LogBookRequest $request, LogBook $logBook)
@@ -49,33 +48,23 @@ class LogBookController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(LogBook $logBook)
     {
-        //
+        // 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(LogBook $logBook)
     {
-        //
+        // $logBooks = LogBook::where('id', $id)->get();
+
+        return view('logbook-form', ['data' => $logBook, 'action' => route('logbook.update', $logBook->id)]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, LogBook $logBook)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(LogBook $logBook)
     {
         //
