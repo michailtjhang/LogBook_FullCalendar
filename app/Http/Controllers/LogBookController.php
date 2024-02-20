@@ -15,22 +15,22 @@ class LogBookController extends Controller
     public function logbookList(request $request)
     {
         $start = date('Y-m-d', strtotime($request->start));
-        
+
         $logbook = LogBook::where('date', '>=', $start)->get()
-        ->map( fn ($item) => [
-            'id' => $item->id,
-            'title' => $item->title,
-            'date' => $item->date,
-            'description' => $item->description,
-            'status' => $item->status
-        ]);
+            ->map(fn($item) => [
+                'id' => $item->id,
+                'title' => $item->title,
+                'date' => $item->date,
+                'description' => $item->description,
+                'status' => $item->status
+            ]);
 
         return response()->json($logbook);
     }
 
-    public function create()
+    public function create(LogBook $logBook)
     {
-        //
+        return view('dashboard.logbook-create', ['data' => $logBook, 'action' => route('logbook.store')]);
     }
 
     /**
