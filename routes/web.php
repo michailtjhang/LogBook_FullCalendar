@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/logbook', LogBookController::class);
+Route::get('logbook/list', [LogBookController::class, 'logbookList'])->name('logbook.list');
+Route::resource('logbook', LogBookController::class);

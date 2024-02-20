@@ -29,13 +29,7 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
           initialView: 'dayGridMonth',
           themeSystem: 'bootstrap5',
-          events: [
-            {
-              id: 1,
-              title: 'All Day Event',
-              start: '2024-02-02'
-            }
-          ]
+          events: `{{ route('logbook.list') }}`,
         });
         calendar.render();
       });

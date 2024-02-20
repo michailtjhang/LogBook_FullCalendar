@@ -7,17 +7,27 @@ use Illuminate\Http\Request;
 
 class LogBookController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         return view('dashboard.logbook');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function logbookList(request $request)
+    {
+        $start = date('Y-m-d', strtotime($request->start));
+        
+        $logbook = LogBook::where('date', '>=', $start)->get()
+        ->map( fn ($item) => [
+            'id' => $item->id,
+            'title' => $item->title,
+            'date' => $item->date,
+            'description' => $item->description,
+            'status' => $item->status
+        ]);
+
+        return response()->json($logbook);
+    }
+
     public function create()
     {
         //

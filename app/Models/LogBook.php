@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class LogBook extends Model
 {
     use HasFactory;
+
+    protected $table = 'logbook';
 }
