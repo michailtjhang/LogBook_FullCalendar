@@ -55,9 +55,7 @@ class LogBookController extends Controller
 
     public function edit(LogBook $logBook)
     {
-        // $logBooks = LogBook::where('id', $id)->get();
-
-        return view('logbook-form', ['data' => $logBook, 'action' => route('logbook.update', $logBook->id)]);
+        // 
     }
 
     public function update(Request $request, LogBook $logBook)
