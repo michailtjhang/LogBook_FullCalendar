@@ -2,24 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LogBook;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $logbook = LogBook::get();
-
-        return view("home", compact("logbook"));
+        $this->middleware('auth');
     }
 
-    public function store(Request $request, string $id)
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
-        $logbook = LogBook::find($id);
-        $logbook->status = $request->status;
-        $logbook->save();
-
-        return back();
+        return view('home');
     }
 }

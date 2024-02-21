@@ -23,3 +23,7 @@ Route::get('logbook/list', [LogBookController::class, 'logbookList'])->name('log
 Route::resource('logbook', LogBookController::class);
 Route::get('home', [HomeController::class, 'index']);
 Route::post('home/store/{id}', [HomeController::class, 'store']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
