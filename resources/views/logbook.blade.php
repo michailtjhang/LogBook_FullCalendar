@@ -16,7 +16,7 @@
     <div class="row">
       <div class="col-12 mt-3">
         <h3 class="text-center py-4" id="tanggal"></h3>
-        <a href="{{route('logbook.create')}}" class="btn btn-primary"><i class="fas fa-chevron-left"></i></a>
+        <a href="{{url('home')}}" class="btn btn-primary"><i class="fas fa-chevron-left"></i></a>
         <div id='calendar'></div>
       </div>
     </div>

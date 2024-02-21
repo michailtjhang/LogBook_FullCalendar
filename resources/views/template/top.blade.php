@@ -113,7 +113,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="{{asset('dashboard/img/undraw_profile_1.svg')}}"
+                        <img class="rounded-circle" src="{{asset('admin/img/undraw_profile_1.svg')}}"
                             alt="...">
                         <div class="status-indicator bg-success"></div>
                     </div>
@@ -125,7 +125,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="{{asset('dashboard/img/undraw_profile_2.svg')}}"
+                        <img class="rounded-circle" src="{{asset('admin/img/undraw_profile_2.svg')}}"
                             alt="...">
                         <div class="status-indicator"></div>
                     </div>
@@ -137,7 +137,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="{{asset('dashboard/img/undraw_profile_3.svg')}}"
+                        <img class="rounded-circle" src="{{asset('admin/img/undraw_profile_3.svg')}}"
                             alt="...">
                         <div class="status-indicator bg-warning"></div>
                     </div>
@@ -172,25 +172,25 @@
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                     
                     <!-- ini adalah kode untuk menampilkan nama sesuai dengan user yang masuk -->
-                    {{-- @if (empty(Auth::user()->name))
+                    @if (empty(Auth::user()->name))
                         {{''}}
                     @else
                         {{Auth::user()->name}}
-                    @endif --}}
+                    @endif
 
                 </span>
-                {{-- @empty(Auth::user()->foto)
+                @empty(Auth::user()->foto)
                     <img class="img-profile rounded-circle"
                     src="{{url('admin/img/nophoto.jpeg')}}" width="40px">
                 @else 
                     <img class="img-profile rounded-circle"
                     src="{{asset('storage/foto/'.Auth::user()->foto)}}" width="40px">
-                @endempty --}}
+                @endempty
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{url('dashboard/profile')}}">
+                <a class="dropdown-item" href="">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     {{__('Profile')}}
                 </a>
@@ -207,10 +207,15 @@
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a> --}}
-                <a class="dropdown-item" href="#">
-                    {{-- onclick="event.preventDefault();
-                        document.getElementById('logout-form').submit();"> --}}
-                    Logout
+                <a class="dropdown-item" href=""
+                    onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
         </li>
 

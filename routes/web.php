@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogBookController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,5 @@ Route::get('/', function () {
 
 Route::get('logbook/list', [LogBookController::class, 'logbookList'])->name('logbook.list');
 Route::resource('logbook', LogBookController::class);
+Route::get('home', [HomeController::class, 'index']);
+Route::post('home/store/{id}', [HomeController::class, 'store']);
