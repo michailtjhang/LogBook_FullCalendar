@@ -1,4 +1,4 @@
-@include('admin.layout.sizebar')
+@include('template.sizebar')
 
 <!-- Content Wrapper -->
 <div id="content-wrapper" class="d-flex flex-column">
@@ -7,7 +7,7 @@
     <div id="content">
 
         <!-- Topbar -->
-        @include('admin.layout.top')
+        @include('template.top')
         <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -19,4 +19,4 @@
 <div>
     
 </div>
-@include('admin.layout.footer')
+@include('template.footer')

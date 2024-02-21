@@ -16,8 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->date('date')->default(DB::raw('CURRENT_TIMESTAMP'));
-            $table->string('status');
+            $table->date('date');
+            $table->string('status')->default('pending');
+            $table->bigInteger('users_id');
             $table->timestamps();
         });
     }

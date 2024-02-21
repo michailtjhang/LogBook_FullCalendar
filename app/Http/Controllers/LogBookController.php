@@ -23,7 +23,8 @@ class LogBookController extends Controller
                 'title' => $item->title,
                 'date' => $item->date,
                 'description' => $item->description,
-                'status' => $item->status
+                'status' => $item->status,
+                'users_id' => $item->users_id
             ]);
 
         return response()->json($logbook);

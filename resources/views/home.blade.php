@@ -1,4 +1,4 @@
-@extends('admin.layout.appadmin')
+@extends('template.appadmin')
 
 @section('title', 'TrackMyShip - Pengiriman Cepat dan Terjangkau')
 
