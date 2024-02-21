@@ -1,9 +1,11 @@
 @extends('template.appadmin')
 
-@section('title', 'TrackMyShip - Pengiriman Cepat dan Terjangkau')
+@section('title', 'Dashboard')
 
 @section('content')
 
+{{-- jabatan staff tdk bisa melihat --}}
+@if (Auth::user()->jabatan != 'staff')
 <div class="row">
 
     <!-- Earnings (Monthly) Card Example -->
@@ -123,7 +125,7 @@
                             @foreach ($logbook as $row)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$row->nama}}</td>
+                                    <td>{{$row->user_name}}</td>
                                     <td>{{$row->title}}</td>
                                     <td>{{$row->description}}</td>
                                     <td>{{$row->date}}</td>
@@ -193,6 +195,8 @@
     </div>
 </div>
 
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
@@ -209,11 +213,22 @@
           var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             themeSystem: 'bootstrap5',
-            events: `{{ route('logbook.list') }}`,
+            events: `{{ route('logbook.dashlist') }}`,
           });
           calendar.render();
         });
   
       </script>
+@else
+
+<div class="row justify-content-center">
+    <div class="col center">
+        <h1 class="h1 mb-0 text-gray-800 font-weight-bold center">No Found</h1>
+        <p class="mb-0 text-gray-800 font-weight-bold center">404</p>
+        <a href="{{ url('logbook') }}" class="btn btn-primary center"> Kembali ke LogBook</a>
+    </div>
+</div>
+
+@endif
 
 @endsection
