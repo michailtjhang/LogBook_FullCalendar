@@ -4,16 +4,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogBookController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,6 +12,7 @@ Route::get('/', function () {
 Route::group(['middleware' => ['auth', 'peran:direktur-manager-staff']], function () {
 
     Route::get('logbook/list', [LogBookController::class, 'logbookList'])->name('logbook.list');
+    Route::get('logbook/check', [LogbookController::class, 'checkLogbook'])->name('logbook.check');
     Route::get('logbook/dashlist', [LogBookController::class, 'logbookDashList'])->name('logbook.dashlist');
     Route::resource('logbook', LogBookController::class);
 

@@ -16,12 +16,7 @@
         </div>
         <div class="col-12">
             <div class="mb-3">
-                <textarea name="description" class="form-control" placeholder="Detail sehari-hari">{{ $data->description }}</textarea>
-            </div>
-        </div>
-        <div class="col-12 invisible">
-            <div class="mb-3">
-                <input type="text" class="form-control" name="users_id" >
+                <textarea name="description" class="form-control" placeholder="Detail sehari-hari" rows="3">{{ $data->description }}</textarea>
             </div>
         </div>
     </div>

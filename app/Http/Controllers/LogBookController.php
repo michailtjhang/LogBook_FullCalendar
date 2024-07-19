@@ -25,7 +25,7 @@ class LogBookController extends Controller
             ->select('logbook.id', 'logbook.title', 'logbook.description', 'logbook.date', 'logbook.status', 'logbook.users_id', 'users.name AS user_name')
             ->where('users_id', $userId)
             ->where('date', '>=', $start)->get()
-            ->map(fn($item) => [
+            ->map(fn ($item) => [
                 'id' => $item->id,
                 'title' => $item->title,
                 'date' => $item->date,
@@ -35,6 +35,19 @@ class LogBookController extends Controller
 
         return response()->json($logbook);
     }
+
+    public function checkLogbook(Request $request)
+    {
+        $date = $request->date;
+        $userId = Auth::user()->id;
+
+        $logbookExists = LogBook::where('users_id', $userId)
+            ->where('date', $date)
+            ->exists();
+
+        return response()->json(['exists' => $logbookExists]);
+    }
+
     public function logbookDashList(request $request)
     {
         $start = date('Y-m-d', strtotime($request->start));
@@ -48,40 +61,40 @@ class LogBookController extends Controller
                 ->join('users', 'users.id', '=', 'logbook.users_id')
                 ->select('logbook.id', 'logbook.title', 'logbook.description', 'logbook.date', 'logbook.status', 'logbook.users_id', 'users.name AS user_name')
                 ->where('date', '>=', $start)->get()
-                ->map(fn($item) => [
-                        'id' => $item->id,
-                        'title' => $item->title,
-                        'date' => $item->date,
-                        'description' => $item->description,
-                        'status' => $item->status,
-                        'users_id' => $item->users_id
-                    ]);;
+                ->map(fn ($item) => [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'date' => $item->date,
+                    'description' => $item->description,
+                    'status' => $item->status,
+                    'users_id' => $item->users_id
+                ]);;
         } elseif (auth()->user()->jabatan == "direktur") {
             $logbook = Logbook::whereIn('users_id', $subordinates)
                 ->join('users', 'users.id', '=', 'logbook.users_id')
                 ->select('logbook.id', 'logbook.title', 'logbook.description', 'logbook.date', 'logbook.status', 'logbook.users_id', 'users.name AS user_name')
                 ->where('date', '>=', $start)->get()
-                ->map(fn($item) => [
-                        'id' => $item->id,
-                        'title' => $item->title,
-                        'date' => $item->date,
-                        'description' => $item->description,
-                        'status' => $item->status,
-                        'users_id' => $item->users_id
-                    ]);;;
+                ->map(fn ($item) => [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'date' => $item->date,
+                    'description' => $item->description,
+                    'status' => $item->status,
+                    'users_id' => $item->users_id
+                ]);;;
         } else {
             $logbook = Logbook::whereIn('users_id', $subordinates)
                 ->join('users', 'users.id', '=', 'logbook.users_id')
                 ->select('logbook.id', 'logbook.title', 'logbook.description', 'logbook.date', 'logbook.status', 'logbook.users_id', 'users.name AS user_name')
                 ->where('date', '>=', $start)->get()
-                ->map(fn($item) => [
-                        'id' => $item->id,
-                        'title' => $item->title,
-                        'date' => $item->date,
-                        'description' => $item->description,
-                        'status' => $item->status,
-                        'users_id' => $item->users_id
-                    ]);;;
+                ->map(fn ($item) => [
+                    'id' => $item->id,
+                    'title' => $item->title,
+                    'date' => $item->date,
+                    'description' => $item->description,
+                    'status' => $item->status,
+                    'users_id' => $item->users_id
+                ]);;;
         }
 
         return response()->json($logbook);
@@ -97,6 +110,7 @@ class LogBookController extends Controller
         $logBook->date = $request->date;
         $logBook->title = $request->title;
         $logBook->description = $request->description;
+        $logBook->users_id = Auth::user()->id;
 
         $logBook->save();
 
