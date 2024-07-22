@@ -11,6 +11,8 @@
 
     <title>@yield('title')</title>
 
+    <link rel="shortcut icon" href="{{ asset('img/icon.svg') }}" type="image/x-icon">
+
     <!-- Custom fonts for this template-->
     <link href="{{asset('dashboard/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -37,8 +39,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('home')}}">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <div class="sidebar-brand-icon">
+                    <i class="far fa-building"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">{{ config('app.name') }}</div>
             </a>
@@ -66,6 +68,9 @@
                 <a class="nav-link" href="{{ url('logbook') }}">
                     <i class="fas fa-book"></i>
                     <span>LogBook</span></a>
+                <a class="nav-link" href="{{ url('organization') }}">
+                    <i class="fas fa-sitemap"></i>
+                    <span>Organization</span></a>
             </li>
 
             <!-- Divider -->

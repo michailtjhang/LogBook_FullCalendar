@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LogBookController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LogBookController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OrganizationController;
 
 
 Route::get('/', function () {
@@ -15,6 +16,8 @@ Route::group(['middleware' => ['auth', 'peran:direktur-manager-staff']], functio
     Route::get('logbook/check', [LogbookController::class, 'checkLogbook'])->name('logbook.check');
     Route::get('logbook/dashlist', [LogBookController::class, 'logbookDashList'])->name('logbook.dashlist');
     Route::resource('logbook', LogBookController::class);
+
+    Route::resource('organization', OrganizationController::class);
 
     Route::get('dash', [DashboardController::class, 'index']);
     Route::post('dash/store/{id}', [DashboardController::class, 'store']);

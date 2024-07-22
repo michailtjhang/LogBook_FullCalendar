@@ -26,6 +26,9 @@
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
     <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.10/index.global.min.js'></script>
 
+    {{-- script SweetAlert --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         $(document).ready(function() {
             var calendarEl = document.getElementById('calendar');
@@ -45,7 +48,12 @@
                                 },
                                 success: function(response) {
                                     if (response.exists) {
-                                        alert('Logbook sudah ada untuk tanggal ini.');
+                                        Swal.fire({
+                                            title: 'Warning!',
+                                            text: 'You have already created logbook for today.',
+                                            icon: 'warning',
+                                            confirmButtonText: 'OK',
+                                        })
                                     } else {
                                         $.ajax({
                                             url: `{{ route('logbook.create') }}`,
@@ -76,26 +84,26 @@
                                                             contentType: false,
                                                             success: function(
                                                                 res
-                                                                ) {
+                                                            ) {
                                                                 console
                                                                     .log(
                                                                         "Form submitted successfully"
-                                                                        );
+                                                                    );
                                                                 $('#modal-action')
                                                                     .modal(
                                                                         'hide'
-                                                                        );
+                                                                    );
                                                                 calendar
                                                                     .refetchEvents();
                                                             },
                                                             error: function(
                                                                 err
-                                                                ) {
+                                                            ) {
                                                                 console
                                                                     .log(
                                                                         "Form submit error:",
                                                                         err
-                                                                        );
+                                                                    );
                                                             }
                                                         });
                                                     });
@@ -110,6 +118,13 @@
                                     console.log("AJAX error:", err);
                                 }
                             });
+                        } else {
+                            Swal.fire({
+                                title: 'Warning!',
+                                text: 'You can only create logbook for today.',
+                                icon: 'warning',
+                                confirmButtonText: 'OK',
+                            })
                         }
                     },
                 });

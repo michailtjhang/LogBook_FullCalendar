@@ -45,8 +45,10 @@
                                     <td>{{$row->description}}</td>
                                     <td>{{$row->date}}</td>
                                     <td>
-                                        @if ($row->status == 'Disetujui' || $row->status == 'Ditolak')
+                                        @if ($row->status == 'Disetujui')
                                             Disetujui
+                                        @elseif ($row->status == 'Ditolak')
+                                            Ditolak
                                         @else
                                             <button type="button"  class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter{{$row->id}}">
                                                 Ubah Status
