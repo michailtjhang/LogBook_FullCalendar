@@ -1,5 +1,5 @@
-# About HRIS Pintar
-HRIS Pintar adalah sistem informasi sumber daya manusia yang dirancang untuk menyederhanakan pengelolaan data karyawan. Nikmati kemudahan dalam mengakses, menganalisis, dan mengelola informasi karyawan Anda.
+# About WorkSight
+WorkSight: Dapatkan gambaran lengkap kinerja tim Anda setiap bulan. Pantau logbook karyawan, identifikasi tren, dan buat keputusan yang lebih baik. Dengan WorkSight, semua data kinerja tim Anda dalam genggaman.
 
 ## Requirements
 
